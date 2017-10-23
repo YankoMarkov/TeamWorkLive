@@ -7,7 +7,6 @@ function startApp() {
 
     showHideMenuLinks();
     showHomeView();
-
     // Bind the navigation menu links
     $("#linkHome").click(showHomeView);
     $("#linkLogin").click(showLoginView);
@@ -48,14 +47,14 @@ function startApp() {
             $("#linkRegister").show();
             $("#linkListAds").hide();
             $("#linkLogout").hide();
-	    $("#loggedInUser").hide();
+	          $("#loggedInUser").hide();
         } else {
             // We have logged in user
             $("#linkLogin").hide();
             $("#linkRegister").hide();
             $("#linkListAds").show();
             $("#linkLogout").show();
-	    $("#loggedInUser").show();
+	          $("#loggedInUser").show();
         }
     }
 
@@ -80,7 +79,6 @@ function startApp() {
             errorMsg = response.responseJSON.description;
         showError(errorMsg);
     }
-
     function showHomeView() {
         showView('viewHome');
     }
@@ -113,14 +111,13 @@ function startApp() {
             data: userData,
             success: loginSuccess,
             error: handleAjaxError
-
         });
 
         function loginSuccess(userInfo) {
             saveAuthInSession(userInfo);
             showHideMenuLinks();
             listAdverts();
-	    showInfo('Login successful.');
+	          showInfo('Login successful.');
         }
     }
 
@@ -129,10 +126,9 @@ function startApp() {
         sessionStorage.setItem('authToken', userAuth);
         let userId = userInfo._id;
         sessionStorage.setItem('userId', userId);
-	let username = userInfo.username;
+	      let username = userInfo.username;
         sessionStorage.setItem('username', username);
         $('#loggedInUser').text("Welcome, " + username + "!");
-
     }
 
     // user/register
@@ -154,7 +150,6 @@ function startApp() {
             data: userData,
             success: registerSuccess,
             error: handleAjaxError
-
         });
 
         function registerSuccess(userInfo) {
@@ -162,7 +157,7 @@ function startApp() {
             saveAuthInSession(userInfo);
             showHideMenuLinks();
             listAdverts();
-	    showInfo('User registration successful.');
+	          showInfo('User registration successful.');
         }
     }
 
@@ -172,7 +167,7 @@ function startApp() {
         $('#loggedInUser').text("");
         showHideMenuLinks();
         showHomeView();
-	showInfo('Logout successful.');
+	      showInfo('Logout successful.');
     }
 
     // advertisement/all
@@ -190,7 +185,6 @@ function startApp() {
             headers: kinveyAuthHeaders,
             success: loadAdvertsSuccess,
             error: handleAjaxError
-
         });
 
         function loadAdvertsSuccess(adverts) {
